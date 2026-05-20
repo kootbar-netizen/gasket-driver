@@ -1,4 +1,3 @@
-```markdown
 # Google Coral PCIe Driver (Gasket) for Linux 6.x+
 
 [简体中文](#简体中文) | [English](#english)
@@ -19,7 +18,7 @@ export PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
 
 # 2. 清理旧目录并克隆本纯净仓库
 cd /root && rm -rf gasket-driver
-git clone https://github.com/kootbar-netizen/gasket-driver.git
+git clone [https://github.com/kootbar-netizen/gasket-driver.git](https://github.com/kootbar-netizen/gasket-driver.git)
 
 # 3. 编译驱动
 cd gasket-driver
@@ -35,8 +34,6 @@ modprobe gasket && modprobe apex
 
 # 6. 验证硬件是否成功亮起
 ls -l /dev/apex_*
-
-```
 
 > 💡 **成功标志：** 如果终端输出中出现 `/dev/apex_0`，说明驱动已完美加载！随后即可重启你的 Frigate 容器。
 
