@@ -1,3 +1,13 @@
+你的直觉非常准，格式确实乱掉了！主要原因有两个：
+
+1. **链接嵌套错误**：`git clone` 后面多出了不必要的 Markdown 链接语法 `[url](url)`，导致命令看起来像一团乱码。
+2. **代码块和引用未闭合**：后面的英文部分丢失了标题标记（`##` 和 `###`）、代码块标志（`````）以及引用框（`>`），导致所有文字混成了一团。
+
+这里为你整理了一份**排版标准、完全修复**的完整 Markdown 代码。
+
+你可以直接点击代码框右上角的 **Copy** 按钮，然后把它们全文盲贴到 GitHub 网页端的 `README.md` 中：
+
+```markdown
 # Google Coral PCIe Driver (Gasket) for Linux 6.x+
 
 [简体中文](#简体中文) | [English](#english)
@@ -18,7 +28,7 @@ export PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
 
 # 2. 清理旧目录并克隆本纯净仓库
 cd /root && rm -rf gasket-driver
-git clone [https://github.com/kootbar-netizen/gasket-driver.git](https://github.com/kootbar-netizen/gasket-driver.git)
+git clone https://github.com/kootbar-netizen/gasket-driver.git
 
 # 3. 编译驱动
 cd gasket-driver
@@ -35,21 +45,27 @@ modprobe gasket && modprobe apex
 # 6. 验证硬件是否成功亮起
 ls -l /dev/apex_*
 
+```
 
-成功标志： 如果终端输出中出现 /dev/apex_0，说明驱动已完美加载！随后即可重启你的 Frigate 容器。
+> 💡 **成功标志：** 如果终端输出中出现 `/dev/apex_0`，说明驱动已完美加载！随后即可重启你的 Frigate 容器。
 
-English
-This repository is a patched fork of the official Google gasket-driver. It specifically fixes the compilation error caused by no_llseek under Linux 6.x (including Linux 6.12+) modern kernels. It is used to enable Coral PCIe accelerators on Debian/Ubuntu systems for services like Frigate.
+---
 
-🚀 Quick Installation
-Run the following commands with root privileges:
+## English
 
+This repository is a patched fork of the official Google `gasket-driver`. It specifically fixes the compilation error caused by `no_llseek` under **Linux 6.x (including Linux 6.12+)** modern kernels. It is used to enable Coral PCIe accelerators on Debian/Ubuntu systems for services like Frigate.
+
+### 🚀 Quick Installation
+
+Run the following commands with `root` privileges:
+
+```bash
 # 1. Fix environment PATH for Debian/Ubuntu systems
 export PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
 
 # 2. Clean old directory and clone this clean repository
 cd /root && rm -rf gasket-driver
-git clone [https://github.com/kootbar-netizen/gasket-driver.git](https://github.com/kootbar-netizen/gasket-driver.git)
+git clone https://github.com/kootbar-netizen/gasket-driver.git
 
 # 3. Compile the driver
 cd gasket-driver
@@ -66,4 +82,10 @@ modprobe gasket && modprobe apex
 # 6. Verify the hardware device
 ls -l /dev/apex_*
 
-Success Indicator: If you see /dev/apex_0 in the terminal output, the driver is successfully loaded! You can now restart your Frigate container.
+```
+
+> 💡 **Success Indicator:** If you see `/dev/apex_0` in the terminal output, the driver is successfully loaded! You can now restart your Frigate container.
+
+```
+
+```
