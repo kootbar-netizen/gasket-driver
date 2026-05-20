@@ -34,3 +34,36 @@ modprobe gasket && modprobe apex
 
 # 6. 验证硬件是否成功亮起
 ls -l /dev/apex_*
+
+
+成功标志： 如果终端输出中出现 /dev/apex_0，说明驱动已完美加载！随后即可重启你的 Frigate 容器。
+
+English
+This repository is a patched fork of the official Google gasket-driver. It specifically fixes the compilation error caused by no_llseek under Linux 6.x (including Linux 6.12+) modern kernels. It is used to enable Coral PCIe accelerators on Debian/Ubuntu systems for services like Frigate.
+
+🚀 Quick Installation
+Run the following commands with root privileges:
+
+# 1. Fix environment PATH for Debian/Ubuntu systems
+export PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
+
+# 2. Clean old directory and clone this clean repository
+cd /root && rm -rf gasket-driver
+git clone [https://github.com/kootbar-netizen/gasket-driver.git](https://github.com/kootbar-netizen/gasket-driver.git)
+
+# 3. Compile the driver
+cd gasket-driver
+make clean && make
+
+# 4. Manually copy drivers to the current kernel directory
+mkdir -p /lib/modules/$(uname -r)/kernel/drivers/misc/
+cp gasket.ko apex.ko /lib/modules/$(uname -r)/kernel/drivers/misc/
+
+# 5. Refresh dependencies and load modules
+depmod -a
+modprobe gasket && modprobe apex
+
+# 6. Verify the hardware device
+ls -l /dev/apex_*
+
+Success Indicator: If you see /dev/apex_0 in the terminal output, the driver is successfully loaded! You can now restart your Frigate container.
