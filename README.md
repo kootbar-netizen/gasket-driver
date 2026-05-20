@@ -34,7 +34,7 @@ modprobe gasket && modprobe apex
 
 # 6. 验证硬件是否成功亮起
 ls -l /dev/apex_*
-
+```
 > 💡 **成功标志：** 如果终端输出中出现 `/dev/apex_0`，说明驱动已完美加载！随后即可重启你的 Frigate 容器。
 
 ---
