@@ -20,8 +20,8 @@ export PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
 cd /root && rm -rf gasket-driver
 git clone [https://github.com/kootbar-netizen/gasket-driver.git](https://github.com/kootbar-netizen/gasket-driver.git)
 
-# 3. 编译驱动
-cd gasket-driver
+# 3. 进入源码目录并编译驱动
+cd gasket-driver/src
 make clean && make
 
 # 4. 手动将驱动塞入当前内核目录
@@ -34,7 +34,6 @@ modprobe gasket && modprobe apex
 
 # 6. 验证硬件是否成功亮起
 ls -l /dev/apex_*
-```
 > 💡 **成功标志：** 如果终端输出中出现 `/dev/apex_0`，说明驱动已完美加载！随后即可重启你的 Frigate 容器。
 
 ---
@@ -47,16 +46,15 @@ This repository is a patched fork of the official Google `gasket-driver`. It spe
 
 Run the following commands with `root` privileges:
 
-```bash
 # 1. Fix environment PATH for Debian/Ubuntu systems
 export PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin
 
 # 2. Clean old directory and clone this clean repository
 cd /root && rm -rf gasket-driver
-git clone https://github.com/kootbar-netizen/gasket-driver.git
+git clone [https://github.com/kootbar-netizen/gasket-driver.git](https://github.com/kootbar-netizen/gasket-driver.git)
 
-# 3. Compile the driver
-cd gasket-driver
+# 3. Enter the source directory and compile the driver
+cd gasket-driver/src
 make clean && make
 
 # 4. Manually copy drivers to the current kernel directory
@@ -69,7 +67,6 @@ modprobe gasket && modprobe apex
 
 # 6. Verify the hardware device
 ls -l /dev/apex_*
-
 ```
 
 > 💡 **Success Indicator:** If you see `/dev/apex_0` in the terminal output, the driver is successfully loaded! You can now restart your Frigate container.
